@@ -4,6 +4,7 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { SWIGGY_API } from "../utils/constants";
 
 const Body = () => {
   const [listofRestaurants, setListofRestaurant] = useState([]);
@@ -17,7 +18,7 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
+    const data = await fetch(SWIGGY_API);
     const json = await data.json();
 
     const restaurants =
