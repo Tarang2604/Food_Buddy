@@ -130,7 +130,7 @@ const RestaurantCard = ({ resData }) => {
   };
 
   return (
-    <div className="group w-65 rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
+    <div className="group w-full rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
       
       {/* Image Section */}
       <div className="relative">
@@ -159,12 +159,12 @@ const RestaurantCard = ({ resData }) => {
           {cuisines?.join(", ")}
         </p>
 
-        <div className="flex items-center justify-between text-sm text-gray-600 pt-2">
+        <div className="flex flex-col gap-2 text-sm text-gray-600 pt-2 sm:flex-row sm:items-center sm:justify-between">
           <span className="font-medium">{costForTwo}</span>
           <span className="flex items-center gap-1">
             ⏱ {formatDeliveryTime(sla?.deliveryTime)}
           </span>
-          <h4>User:{loggedInUser}</h4>
+          <h4 className="text-sm text-gray-500">User: {loggedInUser}</h4>
         </div>
       </div>
       
