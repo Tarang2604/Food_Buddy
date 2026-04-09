@@ -13,8 +13,8 @@
     "tailwindcss": "^4.1.18"
   },
   "scripts": {
-    "start": "npx parcel index.html",
-    "build": "npx parcel build index.html",
+    "start": "node api.js && npx parcel index.html",
+    "build": "node api.js && npx parcel build index.html",
     "test": "jest"
   },
   "dependencies": {
