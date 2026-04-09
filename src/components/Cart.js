@@ -89,9 +89,45 @@ const Cart = () => {
 
           {/* Items list */}
           {cartItems.length > 0 && (
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <div className="max-w-2xl mx-auto">
-                <ItemList items={cartItems} />
+            <div className="flex flex-col md:flex-row gap-6">
+              <div className="bg-white rounded-2xl shadow-lg p-6 w-full md:w-2/3">
+                <div className="max-w-2xl mx-auto">
+                  <ItemList items={cartItems} isCart={true} />
+                </div>
+              </div>
+
+              {/* Order Summary */}
+              <div className="w-full md:w-1/3 bg-white rounded-2xl p-6 h-fit border border-gray-100 shadow-lg sticky top-24">
+                <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-3 block text-left">Bill Details</h2>
+                <div className="space-y-4 text-left">
+                  <div className="flex justify-between text-gray-600 text-lg">
+                    <span>Item Total</span>
+                    <span className="font-semibold text-gray-800">
+                      ₹{cartItems.reduce((acc, item) => acc + ((item.card?.info?.price || item.card?.info?.defaultPrice) / 100) * item.quantity, 0).toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-gray-600 text-lg">
+                    <span>Delivery Fee</span>
+                    <span className="font-semibold text-gray-800">₹40.00</span>
+                  </div>
+                  <div className="flex justify-between text-gray-600 text-lg">
+                    <span>Platform Fee</span>
+                    <span className="font-semibold text-gray-800">₹5.00</span>
+                  </div>
+                  <div className="flex justify-between text-green-600 text-lg">
+                    <span>GST & Restaurant Charges</span>
+                    <span className="font-semibold">₹25.00</span>
+                  </div>
+                  <div className="border-t-2 border-black pt-4 mt-6 flex justify-between items-center">
+                    <span className="font-bold text-gray-800 text-xl block text-left">To Pay</span>
+                    <span className="font-bold text-orange-500 text-2xl">
+                      ₹{(cartItems.reduce((acc, item) => acc + ((item.card?.info?.price || item.card?.info?.defaultPrice) / 100) * item.quantity, 0) + 70).toFixed(2)}
+                    </span>
+                  </div>
+                  <button className="w-full mt-8 bg-green-500 text-white font-bold text-lg py-4 rounded-xl shadow-[0_5px_15px_rgba(34,197,94,0.3)] hover:bg-green-600 transition hover:-translate-y-1 block mx-auto">
+                    PROCEED TO PAY
+                  </button>
+                </div>
               </div>
             </div>
           )}

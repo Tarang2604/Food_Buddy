@@ -12,16 +12,20 @@ class UserClass extends React.Component{
         
     }
 
-    async componentDidMount(){
-        // console.log("Child ComponentDidMount");
-        // Api call
-        const data = await fetch ("https://api.github.com/users/Tarang2604");
-        const json = await data.json();
-
-        this.setState({
-            UserInfo:json,
-        });
-        console.log(json);
+    async componentDidMount() {
+        try {
+            const response = await fetch("https://api.github.com/users/Tarang2604");
+            const json = await response.json();
+            
+            // Handle if Github API Rate Limited
+            if (response.ok && !json.message?.includes("rate limit")) {
+                this.setState({ UserInfo: json });
+            } else {
+                console.warn("GitHub API Rate Limited. Using default dummy data.", json.message);
+            }
+        } catch (error) {
+            console.error("Failed to fetch user:", error);
+        }
     }
     componentDidUpdate(){
         // console.log("ComponentDidUpdate")

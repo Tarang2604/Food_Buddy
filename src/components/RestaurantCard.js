@@ -113,7 +113,7 @@ import { CDN_URL } from "../utils/constants";
 import UserContext from "../utils/UserContext";
 
 const RestaurantCard = ({ resData }) => {
-  const {loggedInUser} = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
   const {
     cloudinaryImageId,
     name,
@@ -131,7 +131,7 @@ const RestaurantCard = ({ resData }) => {
 
   return (
     <div className="group w-full rounded-2xl bg-white shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-      
+
       {/* Image Section */}
       <div className="relative">
         <img
@@ -167,23 +167,23 @@ const RestaurantCard = ({ resData }) => {
           <h4 className="text-sm text-gray-500">User: {loggedInUser}</h4>
         </div>
       </div>
-      
+
     </div>
 
 
   );
 };
 
-export const withPromotedLabel= (RestaurantCard)=>{
-  return(props) =>{
-   return (
-    <div>
-      <label>Promoted</label>
-      <RestaurantCard {...props}/>
-    </div>
-   );
- }
-} 
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label>Promoted</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  }
+}
 
 
 
